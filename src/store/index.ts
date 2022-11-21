@@ -1,11 +1,15 @@
-import { configureStore } from '@reduxjs/toolkit'
-import cardListReducer from '../slices/cardListSlice'
+import { configureStore } from '@reduxjs/toolkit';
+import { setupListeners } from '@reduxjs/toolkit/query';
+import { animalsApi } from '../services/animals';
 
 export const store = configureStore({
   reducer: {
-    cardList: cardListReducer
+    [animalsApi.reducerPath]: animalsApi.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(animalsApi.middleware),
 })
 
-export type RootState = ReturnType<typeof store.getState>
-export type AppDispatch = typeof store.dispatch
+console.log(store.getState());
+
+setupListeners(store.dispatch);
