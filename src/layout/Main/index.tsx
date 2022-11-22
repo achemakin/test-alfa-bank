@@ -1,12 +1,14 @@
 import React, { FC } from 'react';
+import useStore from '../../store';
 import Container from 'react-bootstrap/Container';
-import { useGetAnimalsQuery } from '../../services/animals';
 import Loader from '../../components/Loader';
 import CardList from '../../components/CardList';
 import { MainEl } from './style';
 
 const Main: FC = () => {
-  const { error, isLoading } = useGetAnimalsQuery(0);
+  const { isLoading, error } = useStore(
+    ({ isLoading, error }) => ({ isLoading, error })
+  );
 
   if (isLoading) {
     return (
@@ -18,7 +20,7 @@ const Main: FC = () => {
 
   if (error) {
     return (
-      <MainEl>Ошибка загрузки данных</MainEl>
+      <MainEl>Ошибка загрузки данных: {error?.status} {error?.statusText} .</MainEl>
     )
   }
 

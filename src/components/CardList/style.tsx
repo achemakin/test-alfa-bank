@@ -1,7 +1,7 @@
 import styled, { css } from 'styled-components';
 
 export const ImgWrapper = styled.div`
-  height: 300px;
+  height: 250px;
 
   img {
     object-fit: contain;
@@ -12,8 +12,8 @@ export const ButtonLike = styled.button`
   border: none;
   background-color: transparent;
   svg {
-    width: 50px;
-    height: 50px;  
+    width: 30px;
+    height: 30px;  
     
     path {
       fill: grey;
@@ -33,5 +33,3 @@ export const ButtonLike = styled.button`
     );
   }}
 `;
-
-export const Br = styled.br``;
